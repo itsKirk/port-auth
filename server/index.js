@@ -30,7 +30,7 @@ app.use(
 
 app.use(
   cors({
-    origin: process.env.ALLOWED_URL,
+    //origin: process.env.ALLOWED_URL,
     credentials: true,
   })
 );
@@ -68,7 +68,10 @@ connectDB()
 
 // Routes
 app.get("/", (req, res) => {
-  res.json(req.session);
+  res.json({
+    info: "Welcome to JasNat Wares's Data Hub!",
+    session: req.session,
+  });
 });
 app.use("/api/universities", require("./routes/universities"));
 app.use("/api/users", require("./routes/users"));

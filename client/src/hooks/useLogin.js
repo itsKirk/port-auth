@@ -23,7 +23,6 @@ export const useLogin = () => {
           withCredentials: true,
         }
       );
-      console.log(response);
       if (response.status === 200) {
         const json = await axios.post(apiUrl + "/api/users/getUser", null, {
           withCredentials: true,
