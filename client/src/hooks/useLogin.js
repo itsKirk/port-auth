@@ -29,10 +29,8 @@ export const useLogin = () => {
           withCredentials: true,
         });
         const loggedInUser = await json.data;
-        console.log({ loggedInUser });
         // save the user to local storage
         localStorage.setItem("user", JSON.stringify(loggedInUser));
-        console.log(localStorage.getItem("user"));
 
         // update the auth context
         dispatch({ type: "LOGIN", payload: loggedInUser });

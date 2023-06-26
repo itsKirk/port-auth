@@ -1,13 +1,30 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
+function getPascalCase(fullName) {
+  const trimmedFullName = fullName.trim();
+
+  const names = trimmedFullName.split(/\s+/);
+
+  const firstName = names[0].replace(/[^\w\s]/g, "");
+
+  const lastName = names[names.length - 1].replace(/[^\w\s]/g, "");
+
+  const formattedFirstName =
+    firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+
+  const formattedLastName =
+    lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
+
+  return `${formattedFirstName} ${formattedLastName}`;
+}
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { user } = useAuthContext();
   const { logout } = useLogout();
   const handleClick = () => {
-    navigate("/dashboard");
+    navigate("/");
   };
   const handleLogout = async () => {
     await logout();
@@ -22,6 +39,9 @@ const Navbar = () => {
           EDU-KE
         </span>
         <div>
+          <span className="mr-4 text-gray-300">
+            {user ? "Hello, " + getPascalCase(user.user.name) : null}
+          </span>
           {!user && (
             <Link
               to="/register"

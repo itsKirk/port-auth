@@ -5,11 +5,8 @@ const router = express.Router();
 // GET all universities
 router.get("/", isAuthenticated, async (req, res) => {
   try {
-    const universities = await University.find();
-    console.log({
-      sessionFromUniversity: req.session,
-      auth: req.isAuthenticated(),
-    });
+    const universities = await University.find({});
+
     res.json(universities);
   } catch (error) {
     console.error("Error fetching universities:", error);
