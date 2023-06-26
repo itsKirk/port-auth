@@ -30,7 +30,7 @@ app.use(
 
 app.use(
   cors({
-    //origin: process.env.ALLOWED_URL,
+    origin: true,
     credentials: true,
   })
 );
