@@ -14,17 +14,7 @@ router.post("/register", async (req, res) => {
   const user = await User.create({ email, password: hashedPassword, name });
   res.status(201).json({ success: true, user });
 });
-router.post("/getUser", function (req, res) {
-  const { user } = req;
-  if (!user) {
-    res.status(403).json(null);
-  }
-  const loggedInUser = {
-    id: user._id,
-    name: user.name,
-  };
-  res.status(200).json({ user: loggedInUser });
-});
+
 router.post("/logout", function (req, res, next) {
   req.logout(function (err) {
     if (err) {
@@ -46,5 +36,15 @@ router.get("/dashboard", async (req, res) => {
   const { session } = req;
   res.status(200).json({ message: "login successful" });
 });
-
+router.post("/getUser", function (req, res) {
+  const { user } = req;
+  if (!user) {
+    res.status(403).json(null);
+  }
+  const loggedInUser = {
+    id: user._id,
+    name: user.name,
+  };
+  res.status(200).json({ user: loggedInUser });
+});
 module.exports = router;
