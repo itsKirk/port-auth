@@ -40,7 +40,7 @@ const Navbar = () => {
         </span>
         <div>
           <span className="mr-4 text-gray-300">
-            {user ? "Hello, " + getPascalCase(user.user.name) : null}
+            {user ? "Hello, " + getPascalCase(user.name) : null}
           </span>
           {!user && (
             <Link

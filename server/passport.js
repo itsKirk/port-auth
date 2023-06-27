@@ -42,4 +42,3 @@ exports.initializePassport = (passport) => {
     }
   });
 };
-

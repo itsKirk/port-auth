@@ -28,13 +28,18 @@ router.post(
   "/login",
   passport.authenticate("local", {
     failureRedirect: "/login",
-    successRedirect: "/",
+    successRedirect: "/api/user",
     failureFlash: true,
   })
 );
 router.get("/dashboard", async (req, res) => {
-  const { session } = req;
-  res.status(200).json({ message: "login successful" });
+  const { session, user } = req;
+  console.log(session, user);
+  if (user) {
+    res.status(200).json({ message: "login successful" });
+  } else {
+    res.status(401).json({ message: "not logged in" });
+  }
 });
 router.post("/getUser", function (req, res) {
   const { user } = req;

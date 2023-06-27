@@ -13,7 +13,6 @@ export const useLogin = () => {
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      console.log({ path: apiUrl });
       const response = await axios.post(
         apiUrl + "/api/users/login",
         {
@@ -25,15 +24,12 @@ export const useLogin = () => {
         }
       );
       if (response.status === 200) {
-        const json = await axios.post(apiUrl + "/api/users/getUser", null, {
-          withCredentials: true,
-        });
-        const loggedInUser = await json.data;
+        const { user } = response.data;
         // save the user to local storage
-        localStorage.setItem("user", JSON.stringify(loggedInUser));
+        localStorage.setItem("user", JSON.stringify(user));
 
         // update the auth context
-        dispatch({ type: "LOGIN", payload: loggedInUser });
+        dispatch({ type: "LOGIN", payload: user });
       } else {
         setError(response.data.error);
       }

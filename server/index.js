@@ -75,3 +75,4 @@ app.get("/", (req, res) => {
 });
 app.use("/api/universities", require("./routes/universities"));
 app.use("/api/users", require("./routes/users"));
+app.use("/api/user", require("./routes/user"));
