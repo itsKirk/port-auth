@@ -9,7 +9,16 @@ const connectDB = require("./db");
 const { initializePassport } = require("./passport");
 const app = express();
 require("dotenv").config();
-
+//cors
+app.use(
+  cors({
+    origin: [
+      "https://main--kenya-universities.netlify.app",
+      "https://kenya-universities.onrender.com",
+    ],
+    credentials: true,
+  })
+);
 // Express session
 app.use(
   session({
@@ -29,12 +38,6 @@ app.use(
   })
 );
 
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-  })
-);
 app.use(express.json());
 
 // Passport middleware
