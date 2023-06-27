@@ -1,8 +1,6 @@
 const express = require("express");
-const { isAuthenticated } = require("../middleware/requireAuth");
 const router = express.Router();
-// GET all universities
-router.get("/", isAuthenticated, async (req, res) => {
+router.get("/", async (req, res) => {
   const { user } = req;
   if (user) {
     const loggedInUser = {
