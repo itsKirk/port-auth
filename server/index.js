@@ -13,8 +13,8 @@ require("dotenv").config();
 app.use(
   cors({
     origin: [
+      "https://main--kenya-universities.netlify.app",
       "https://kenya-universities.onrender.com",
-      /\.main--kenya-universities.netlify.app\.com$/,
     ],
     credentials: true,
   })
@@ -29,8 +29,7 @@ app.use(
       maxAge: 1000 * 60 * 60 * 24,
       secure: true,
       httpOnly: true,
-      sameSite: "none",
-      domain: "https://kenya-universities.onrender.com",
+      sameSite: "lax",
     },
     store: MongoDBStore.create({
       mongoUrl: process.env.MONGODB_CONNECTION,
