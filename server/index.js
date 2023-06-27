@@ -13,8 +13,8 @@ require("dotenv").config();
 app.use(
   cors({
     origin: [
-      "https://main--kenya-universities.netlify.app",
       "https://kenya-universities.onrender.com",
+      /\.main--kenya-universities.netlify.app\.com$/,
     ],
     credentials: true,
   })
