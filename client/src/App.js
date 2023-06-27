@@ -12,7 +12,8 @@ import Navbar from "./components/navbar";
 import Dashboard from "./pages/dashboard";
 import { useAuthContext } from "./hooks/useAuthContext";
 import NotFound from "./pages/notfound";
-
+import axios from "axios";
+axios.defaults.withCredentials = true;
 const App = () => {
   const { user } = useAuthContext();
   return (

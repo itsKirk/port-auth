@@ -18,8 +18,9 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
-      // secure: true,
+      secure: true,
       httpOnly: false,
+      sameSite: "none",
     },
     store: MongoDBStore.create({
       mongoUrl: process.env.MONGODB_CONNECTION,
